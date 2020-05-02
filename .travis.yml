@@ -8,7 +8,7 @@ before_install:
 - mv google_compute_engine /home/travis/.ssh/
 - chmod 0600 /home/travis/.ssh/google_compute_engine
 install:
-- pip install ansible==2.9.7 molecule==2.22 apache-libcloud
+- pip install -r ./requirements.txt
 script:
 - molecule --debug create
 - molecule --debug converge
@@ -17,6 +17,8 @@ script:
 after_script:
 - molecule --debug destroy
 env:
+  matrix:
+  - GCE_CREDENTIALS_FILE="$(pwd)/credentials.json"
   global:
   - secure: e4JUhLosio6Ls3HX4eELZ4ghJai2kAKl8mxQbuylTIhXW2+MUB3UD8ONRcvadJYZZb7KMRZnEF7Rg81PamstEJu2lCL7j3JiIgzXqoaZVIdwKKUm2gPgyDL2ra+3nYlEkG+dx/GyBov8clIFvQYzFCBRNKrSeTbHYeSpvG3Q4Hou/cAIR2tIx+/ONKlSff/RMIjk68ZKZraOw8a9Lj8EUTP2hbPIlNUeXqiLCrqUv+xZ+NyK0/0ce5K6gkyhoAFDaX2ZhJKFbqNWcjgohPBagEDE4r2bIanHLvjyQkYQNn/ndZ6k9hv2rplJhG7trTqj6Cck5LMq/FslUpkbjR09GTNR/DZOiK5pg5OcGZGi4DS1HMmKoTyml+LaxoHjlqjg4P+ePT0SVlmI3d1YdniXRqJfo82JEoGNqmctz45SZapeuq32mfTiSExAMRB+2FgbavV2OR1+J3K+Fgkm0Q5qDVQ6a5L2CJhWzyMS1TviQZbiHcth9Yp8GpbelwnXfsieXQZhxIoc1rOG+V1FDolYKoLnh9ObrD+mjheX35xCV6ACQSTUhShshlqv2avwXAxxSYBU45CHlIeT1fnFZleAKSLX2USFygbMDK/lyIhJqMnAeh94BZFTCsSLd/gp7S/YsTXJToMNL3r7Srs++pr4FTx2s3/qnVInF8mfcmI+64M=
   - secure: lOJkEUCn9Mrc2CGHNGW4taPGHgNOHyhAuukpdWt6oX4i1b8S+Q4noFRGD7psMzYc1gHqmZWgcJpxiqz2SiM+TJ/xmVB74KIcon9p8nr2Ig21skl8oJWLy322tYxG70wYwmdz1Bsnzge6xLWZwvs4EGjEwuamzS0xeDM8gBP1DoHIn8bvy3EbIz0riAuOIqLqyaDN3Viu/Ii7TxXkcidHoeeKvrXsIwZXoEk6CtV9CV0PfackLWXOSSI2Ch3N9tg+RaQqlbN/GOYad/tXo9Nz11qum3UID/VW4dts6yQZi9uRIEbBcMosZZ7Qf/KAxc3PDgGrismisCpQgbHp4v2oWzXuE82gsRWxYqojQPPmgJCFku0SogD1PHfVIe3pvIcGo91kdKX8ONlK7NaMhVZvvf134Dijs9vi3UEQcAUkKOpJJiqwshVZ83UWB0+HQDRqsOqj5QVByij1EiyMk0gVlJsTkdFSeEyKJqPVKruujuGQWT0D2GyuxoiYy7+g+jyIvNtErl0JaiE9mCf2fx5hKuSj0HOm/L4IBFtCfE0mCPabz9FFeZ3t3+vagf+UiRIkH1Q3kWu6eUm5COsTvGxMI7zm8tRsrJl7RSt4xs6l0y6ux+Wiu7zvYDOMO1vrGr/wJ+gVMvzGOx151bcXD546bknacb9dZaOp0MpX1RRorWk=
