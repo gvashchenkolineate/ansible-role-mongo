@@ -9,6 +9,7 @@
     ssh_user: "{{ lookup('env', 'USER') }}"
     ssh_identity_file: "{{ lookup('env', 'HOME') }}/.ssh/google_compute_engine"
   tasks:
+
     - name: Create molecule instance(s)
       gce:
         instance_names: "{{ item.name }}"
